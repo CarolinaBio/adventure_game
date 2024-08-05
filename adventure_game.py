@@ -1,20 +1,25 @@
 import random
 import time
 
+
 def set_enemy():
     return random.choice(["troll", "dragon", "wicked fairy", "zombie"])
+
 
 def set_weapon():
     return random.choice(["sword", "knife"])
 
-def print_sleep(message, wait_time=1):
+
+def print_sleep(message, wait_time=2):
     print(message)
     time.sleep(wait_time)
+
 
 def intro():
     print_sleep("You find yourself standing in an open field")
     print_sleep("It is filled with grass and yellow wildflowers.")
     print_sleep("Rumor has it that this is a magic land")
+
 
 def play_again():
     choice = ''
@@ -24,15 +29,17 @@ def play_again():
             print("Please enter 'y' or 'n'.")
     return choice == 'y'
 
+
 def game_over():
     print_sleep("Thanks for playing!")
     print_sleep("Game over, my friend")
+
 
 def combat(weapon, enemy):
     print_sleep(f"You are now in combat against a {enemy}.")
     print_sleep(f"Use your {weapon}.")
     if weapon == "sword":
-        print_sleep(f"You might be feeling a bit unprepared for this fight against the {enemy}.")
+        print_sleep(f"You might be feeling a bit unprepared for this fight.")
     else:
         print_sleep("The knife is very sharp, but the enemy is very strong!")
     fight = ''
@@ -43,14 +50,17 @@ def combat(weapon, enemy):
     if fight == "y":
         print_sleep("You are doing your best.")
         if weapon == "sword":
-            print_sleep("You just saved 10 workers from town! Congratulations! You are victorious.")
+            print_sleep("You just saved 10 workers from town!")
+            print_sleep("Congratulations! You are victorious.")
             return True
         else:
             print_sleep("Despite your efforts, you were defeated.")
             return False
     else:
-        print_sleep("You run back to the field and pay attention if someone is following...")
+        print_sleep("You can run back to the field")
+        print_sleep("and pay attention if someone is following...")
         return True
+
 
 def where_to():
     print_sleep("In front of you, there is a house and to your left, a cave.")
@@ -63,10 +73,12 @@ def where_to():
             print("Please enter '1' or '2'.")
     return choice
 
+
 def door(enemy):
     print_sleep("You are entering the house.")
     print_sleep(f"A rare and valuable item from the {enemy} is on display.")
-    print_sleep(f"If you choose to collect it, be careful... The {enemy} might be close by.")
+    print_sleep(f"If you choose to collect it, be careful...")
+    print_sleep("The {enemy} might be close by.")
     player_input = ''
     while player_input not in ['1', '2']:
         player_input = input("Are you collecting it? (1 for yes, 2 for no)\n")
@@ -79,6 +91,7 @@ def door(enemy):
     else:
         print_sleep("Wise choice. You are walking out of here.")
         return False
+
 
 def cave(cave_visited, weapon, enemy):
     print_sleep("You peer into the cave.")
@@ -98,8 +111,8 @@ def cave(cave_visited, weapon, enemy):
                 print("Please enter 'y' or 'n'.")
         if player_input == "y":
             print_sleep("You carefully pick up the item.")
-            print_sleep("Suddenly, the cave starts to shake and the entrance begins to close!")
-            print_sleep("You run as fast as you can and barely make it out in time.")
+            print_sleep("The cave starts to shake! The entrance begins to close!")
+            print_sleep("Hurry as fast as you can to make it out in time.")
             print_sleep("Congratulations! You have obtained a rare item.")
             fight = ''
             while fight not in ['y', 'n']:
@@ -109,19 +122,22 @@ def cave(cave_visited, weapon, enemy):
             if fight == 'y':
                 return combat(weapon, enemy)
             else:
-                print_sleep("You chose to avoid the fight and safely return to the field.")
+                print_sleep("You chose to avoid the fight and return to the field.")
                 return True
         else:
             print_sleep("Wise choice. Let's get you back to the field.")
             return True
 
+
 def ask_continue():
     choice = ''
     while choice not in ['y', 'n']:
-        choice = input("Do you want to go home with the item you stole or continue to the other location? (y for go home, n for continue)\n").lower()
+        print_sleep("You can go home with the item or continue to explore.")
+        choice = input("y for go home, n for continue)\n").lower()
         if choice not in ['y', 'n']:
             print("Please enter 'y' or 'n'.")
     return choice
+
 
 def main():
     while True:
@@ -131,7 +147,8 @@ def main():
         game_active = True
         while game_active:
             if cave_visited and house_visited:
-                print_sleep("You've explored both the house and the cave. There's nothing left to explore.")
+                print_sleep("You've explored both the house and the cave.")
+                print_sleep("There's nothing left to explore.")
                 game_active = False
                 continue
 
@@ -154,7 +171,8 @@ def main():
                 else:
                     print_sleep("You choose to continue your adventure.")
                     if cave_visited and house_visited:
-                        print_sleep("You've explored both the house and the cave. There's nothing left to explore.")
+                        print_sleep("You've explored both the house and the cave.")
+                        print_sleep("There's nothing left to explore.")
                         game_active = False
 
         if not play_again():
