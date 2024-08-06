@@ -111,18 +111,18 @@ def cave(cave_visited, weapon, enemy):
                 print("Please enter 'y' or 'n'.")
         if player_input == "y":
             print_sleep("You carefully pick up the item.")
-            print_sleep("The cave starts to shake! The entrance begins to close!")
+            print_sleep("The cave is shaking! The entrance begins to close!")
             print_sleep("Hurry as fast as you can to make it out in time.")
             print_sleep("Congratulations! You have obtained a rare item.")
             fight = ''
             while fight not in ['y', 'n']:
-                fight = input(f"Do you want to fight the {enemy} that appeared? (y/n)\n").lower()
+                fight = input(f"Do you want to fight the {enemy}?\n").lower()
                 if fight not in ['y', 'n']:
                     print("Please enter 'y' or 'n'.")
             if fight == 'y':
                 return combat(weapon, enemy)
             else:
-                print_sleep("You chose to avoid the fight and return to the field.")
+                print_sleep("You chose to avoid the fight and return")
                 return True
         else:
             print_sleep("Wise choice. Let's get you back to the field.")
@@ -166,12 +166,12 @@ def main():
             if game_active:
                 continue_choice = ask_continue()
                 if continue_choice == 'y':
-                    print_sleep("You decide to go home with your item. Congratulations!")
+                    print_sleep("ok, go home with your item. Congratulations!")
                     game_active = False
                 else:
                     print_sleep("You choose to continue your adventure.")
                     if cave_visited and house_visited:
-                        print_sleep("You've explored both the house and the cave.")
+                        print_sleep("You explored the house and the cave.")
                         print_sleep("There's nothing left to explore.")
                         game_active = False
 
@@ -179,6 +179,6 @@ def main():
             game_over()
             break
 
+
 if __name__ == "__main__":
     main()
-
